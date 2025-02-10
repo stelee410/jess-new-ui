@@ -1,0 +1,20 @@
+{
+    "navigation": {
+      "home": "首页",
+      "about": "关于",
+      "contact": "联系我们"
+    },
+    "common": {
+      "welcome": "欢迎",
+      "loading": "加载中...",
+      "error": "发生错误",
+      "notFound": "页面未找到",
+      "language": "语言"
+    },
+    "actions": {
+      "save": "保存",
+      "cancel": "取消",
+      "confirm": "确认",
+      "delete": "删除"
+    }
+  }
