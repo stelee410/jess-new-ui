@@ -2,13 +2,13 @@
     "navigation": {
       "home": "Home",
       "about": "About",
-      "contact": "Contact"
+      "contact": "Contact Us"
     },
     "common": {
       "welcome": "Welcome",
       "loading": "Loading...",
-      "error": "Error occurred",
-      "notFound": "Page not found",
+      "error": "Error Occurred",
+      "notFound": "Page Not Found",
       "language": "Language"
     },
     "actions": {
@@ -16,5 +16,11 @@
       "cancel": "Cancel",
       "confirm": "Confirm",
       "delete": "Delete"
+    },
+    "login": {
+      "username": "Username",
+      "password": "Password",
+      "login": "Login",
+      "loginWithMetamask": "Login with Metamask"
     }
-  }
+}

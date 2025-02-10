@@ -16,5 +16,11 @@
       "cancel": "取消",
       "confirm": "确认",
       "delete": "删除"
+    },
+    "login": {
+      "username": "用户名",
+      "password": "密码",
+      "login": "登录",
+      "loginWithMetamask": "通过 Metamask 登录"
     }
   }
