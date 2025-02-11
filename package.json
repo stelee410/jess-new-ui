@@ -12,6 +12,8 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^6.4.3",
+    "@types/axios": "^0.14.4",
+    "axios": "^1.7.9",
     "next": "15.1.6",
     "next-intl": "^3.26.3",
     "react": "^19.0.0",

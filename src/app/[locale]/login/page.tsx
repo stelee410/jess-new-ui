@@ -1,7 +1,9 @@
+"use client"
 import React from 'react';
 import { TextField, Button, Container, Typography } from '@mui/material';
 import { useTranslations } from 'next-intl';
 import '../../../styles/login.css';
+import apiClient from '@/services';
 export default function Login() {
   const t = useTranslations('login');
   return (
