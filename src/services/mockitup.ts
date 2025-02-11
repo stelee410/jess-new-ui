@@ -1,6 +1,6 @@
 import { AxiosInstance, InternalAxiosRequestConfig, AxiosAdapter, AxiosResponse } from "axios";
 import ping from "./mocks/ping";
-
+import login from "./mocks/login";
 // 首先定义一个 MockHandler 类型
 type MockHandler = (response: AxiosResponse) => AxiosResponse;
 
@@ -11,6 +11,7 @@ interface MockRouteMap {
 
 const mockServiceRouter:MockRouteMap = {
     "/ping": ping,
+    "/login": login
 }
 
 const mockAdapter: AxiosAdapter = (config: InternalAxiosRequestConfig) => {  
@@ -19,15 +20,29 @@ const mockAdapter: AxiosAdapter = (config: InternalAxiosRequestConfig) => {
             data: null,
             status: 200,
             statusText: 'OK',
-            headers: { 'content-type': 'application/json' },
+            headers: { 
+                'content-type': 'application/json'
+            },
             config,
             request: {}
-          };
+        };
+        
         if (config.url) {
             const handler = mockServiceRouter[config.url];
             if (handler) {
-                response = handler(response);
-                resolve(response);
+                try{
+                    if (config.data) {
+                        response.request = JSON.parse(config.data);
+                    }
+                } catch (error) {
+                    reject(new Error(`Invalid JSON: ${config.data}`));
+                }
+                response = handler(response);                
+                if (response.status >= 200 && response.status < 300) {
+                    resolve(response);
+                } else {
+                    reject(response);
+                }
             } else {
                 reject(new Error(`No mock handler found for URL: ${config.url}`));
             }
