@@ -1,12 +1,7 @@
-import {useTranslations} from 'next-intl';
+"use client"
+import { useRouter } from 'next/navigation';
  
 export default function Home() {
-  const t = useTranslations('common');
- 
-  return (
-    <main>
-      <h1>{t('welcome')}</h1>
-      <p>{t('language')}</p>
-    </main>
-  );
+  const router = useRouter();
+  router.replace('/main')
 }

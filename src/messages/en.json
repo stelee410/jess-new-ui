@@ -9,7 +9,8 @@
       "loading": "Loading...",
       "error": "Error Occurred",
       "notFound": "Page Not Found",
-      "language": "Language"
+      "language": "Language",
+      "linkyunAI": "Linkyun AI"
     },
     "actions": {
       "save": "Save",
@@ -23,5 +24,13 @@
       "login": "Login",
       "loginWithMetamask": "Login with Metamask",
       "loginError": "Invalid username or password"
+    },
+    "main": {
+      "discover": "Discover",
+      "chat": "Chat",
+      "create": "Create",
+      "inbox": "Inbox",
+      "setting": "Setting",
+      "linkyunAI": "Linkyun AI"
     }
 }
