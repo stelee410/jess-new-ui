@@ -9,7 +9,7 @@ const ProfileListShort = ({ list }: {list:Profile[]}) => {
         <div style={{ display: 'flex' }}>
             {list.map((profile, index) => (
                 <div key={index}>
-                    <Link href={`chat/${profile.name}`}>
+                    <Link href={`/main/chat/${profile.name}`}>
                         <Avatar 
                         alt={profile.name} 
                         src={profile.avatar} 

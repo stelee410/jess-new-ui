@@ -33,5 +33,9 @@
       "setting": "Setting",
       "linkyunAI": "Linkyun AI",
       "recentlyChat": "Recently Chat"
+    },
+    "profileCard": {
+      "share": "Share",
+      "chat": "Chat"
     }
 }

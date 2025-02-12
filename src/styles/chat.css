@@ -1,0 +1,9 @@
+.chat-input {
+    border: 1px solid #666;
+}
+.chat-input .MuiInputBase-input {
+    color: #fff !important;
+}
+.chat-input:hover .MuiOutlinedInput-notchedOutline {
+    border-color: #888 !important;
+}

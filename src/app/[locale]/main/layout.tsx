@@ -1,6 +1,6 @@
 "use client"
-import React, { useEffect } from 'react';
-import { Box, CssBaseline, Toolbar, IconButton, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Box, CssBaseline, Toolbar, IconButton, Typography, Menu, MenuItem } from '@mui/material';
 import { useTheme, Theme } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '@/components/appBar';
@@ -18,6 +18,8 @@ import { Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } f
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useTranslations } from 'next-intl';
+import { useRouter, usePathname } from 'next/navigation';
+import LanguageIcon from '@mui/icons-material/Language';
 
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -25,6 +27,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     const theme: Theme = useTheme();
     const [open, setOpen] = React.useState(false);
     const [connected, setConnected] = React.useState(false);
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const router = useRouter();
+    const pathname = usePathname();
   
     const handleDrawerOpen = () => {
       setOpen(true);
@@ -32,6 +37,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   
     const handleDrawerClose = () => {
       setOpen(false);
+    };
+
+    const handleLanguageMenu = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleLanguageClose = (locale?: string) => {
+        setAnchorEl(null);
+        if (locale) {
+            const newPath = pathname.replace(/^\/[^\/]+/, `/${locale}`);
+            router.push(newPath);
+        }
     };
 
     const menuItems = [
@@ -67,9 +84,23 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <MenuIcon />
               </IconButton>
               {connected ? <WifiTetheringIcon/> : <WifiOffIcon color="error" />} &nbsp;
-              <Typography variant="h6" noWrap component="div">
+              <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
                 {t('linkyunAI')}
               </Typography>
+              <IconButton
+                color="inherit"
+                onClick={handleLanguageMenu}
+              >
+                <LanguageIcon />
+              </IconButton>
+              <Menu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={() => handleLanguageClose()}
+              >
+                <MenuItem onClick={() => handleLanguageClose('zh')}>中文</MenuItem>
+                <MenuItem onClick={() => handleLanguageClose('en')}>English</MenuItem>
+              </Menu>
             </Toolbar>
           </AppBar>
           <Drawer variant="permanent" open={open}>

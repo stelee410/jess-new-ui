@@ -33,5 +33,9 @@
       "setting": "设置",
       "linkyunAI": "灵芸AI",
       "recentlyChat": "最近聊天"
+    },
+    "profileCard": {
+      "share": "分享",
+      "chat": "聊天"
     }
   }
