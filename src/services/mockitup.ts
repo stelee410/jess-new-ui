@@ -1,6 +1,8 @@
 import { AxiosInstance, InternalAxiosRequestConfig, AxiosAdapter, AxiosResponse } from "axios";
 import ping from "./mocks/ping";
 import login from "./mocks/login";
+import { profile_list } from "./mocks/profile";
+
 // 首先定义一个 MockHandler 类型
 type MockHandler = (response: AxiosResponse) => AxiosResponse;
 
@@ -11,7 +13,8 @@ interface MockRouteMap {
 
 const mockServiceRouter:MockRouteMap = {
     "/ping": ping,
-    "/login": login
+    "/login": login,
+    "/profile/list": profile_list
 }
 
 const mockAdapter: AxiosAdapter = (config: InternalAxiosRequestConfig) => {  

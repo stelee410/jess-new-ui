@@ -106,6 +106,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <Divider />
         </Drawer>
           <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          <DrawerHeader />
           {children}
           </Box>
         </Box>);
