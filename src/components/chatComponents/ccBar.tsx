@@ -5,8 +5,14 @@ import { Profile } from '@/types/profile';
 function CCBar({profile}:{profile:Profile}){
     return (
         <AppBar position="static">
-                <Container maxWidth="xl">
-                    <Toolbar disableGutters>
+                <Container maxWidth="md">
+                    <Toolbar 
+                        disableGutters 
+                        sx={{ 
+                            justifyContent: 'center',
+                            minHeight: '30px !important'  // 默认是64px
+                        }}
+                    >
                         <ForumIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                         <Typography
                             variant="h6"
@@ -23,7 +29,7 @@ function CCBar({profile}:{profile:Profile}){
                             textDecoration: 'none',
                             }}
                         >
-                            Chat with {profile.displayName}
+                            {profile.displayName}
                         </Typography>
                     </Toolbar>
                 </Container>
