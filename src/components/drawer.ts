@@ -5,7 +5,7 @@ import { drawerWidth,openedMixin,closedMixin } from './const';
 interface CustomDrawerProps extends DrawerProps {
   open?: boolean;
 }
-
+//fix cssobject
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== 'open',
 })<CustomDrawerProps>(({ theme, open }): CSSObject => ({
