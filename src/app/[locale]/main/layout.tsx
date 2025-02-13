@@ -20,6 +20,8 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useTranslations } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
 import LanguageIcon from '@mui/icons-material/Language';
+import { ThemeProvider } from '@mui/material/styles';
+import { darkTheme } from '@/styles/theme';
 
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -67,6 +69,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       });
     },[]);
     return (
+      <ThemeProvider theme={darkTheme}>
         <Box sx={{ display: 'flex' }}>
           <CssBaseline />
           <AppBar position="fixed" open={open}>
@@ -140,5 +143,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <DrawerHeader />
           {children}
           </Box>
-        </Box>);
+        </Box>
+     </ThemeProvider>
+    );
 }

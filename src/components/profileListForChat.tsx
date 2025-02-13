@@ -3,9 +3,10 @@ import React from "react";
 import Typography from '@mui/material/Typography';
 import Chat from "@/types/chat";
 import { Link } from "@mui/material";
+import { useTranslations } from "next-intl";
 
-function formatTimestamp(timestamp: string): string {
-    const ts = new Date(timestamp);
+function formatTimestamp(timestamp?: string): string {
+    const ts = timestamp ? new Date(timestamp) : new Date();
     return new Intl.DateTimeFormat('en-GB', { 
         year: 'numeric', 
         month: '2-digit', 
@@ -22,6 +23,7 @@ interface ProfileListForChatProps {
 }
 
 function ProfileListForChat({ chats, currentProfile }: ProfileListForChatProps) {
+    const t = useTranslations('main');
     if (!chats) {
         return null;
     }
@@ -36,12 +38,17 @@ function ProfileListForChat({ chats, currentProfile }: ProfileListForChatProps) 
     }
 
     return (
-    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', margin: '-10px'}}>
+    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
           <Avatar alt={thisChat.name} src={thisChat.avatar} />
         </ListItemAvatar>
         <ListItemText
+          sx={{ 
+            '& .MuiListItemText-primary': { 
+              fontWeight: 'bold' 
+            }
+          }}
           primary={thisChat.displayName}
           secondary={
             <React.Fragment>
@@ -51,9 +58,9 @@ function ProfileListForChat({ chats, currentProfile }: ProfileListForChatProps) 
                 variant="body2"
                 color="text.primary"
               >
-                {formatTimestamp(thisChat.lastchatTimestamp)}
+                {formatTimestamp()}
               </Typography>
-               &nbsp; — &nbsp; {thisChat.lastchat}
+               &nbsp; — &nbsp; {t('onChatting')}
             </React.Fragment>
           }
         />

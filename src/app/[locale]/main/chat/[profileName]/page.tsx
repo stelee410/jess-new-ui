@@ -31,7 +31,13 @@ export default async function Chat({
             <Grid item xs={false} sm={2} md={3} >
                 <ProfileListForChat chats={recent_chats} currentProfile={profileName}/>
             </Grid>
-            <Grid item xs={12} sm={10} md={9} component={Paper} elevation={6} square>
+            <Grid item 
+                xs={12} 
+                sm={10} 
+                md={9} 
+                component={Paper} 
+                elevation={6}
+            >
                 <ChatBot profile={currentProfile}/>
             </Grid>
         </Grid>

@@ -39,7 +39,6 @@ function ChatBot({profile}:{profile:Profile}){
                     alignItems: 'center',
                 }}
         >
-            <CCBar profile={profile}/>
             <CCContainer messages={messages} profile={profile} updateMessages={updateMsg} enableUpdate={enableUpdate}/>
         </Box>
     )

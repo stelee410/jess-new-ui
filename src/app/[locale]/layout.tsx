@@ -11,8 +11,8 @@ export default function LocaleLayout({
     const messages = useMessages();
  
     return (
-            <NextIntlClientProvider messages={messages} locale={locale}>
-            {children}
-            </NextIntlClientProvider>
+      <NextIntlClientProvider messages={messages} locale={locale}>
+        {children}
+      </NextIntlClientProvider>
     );
 }

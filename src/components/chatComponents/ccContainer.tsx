@@ -28,7 +28,7 @@ function CCContainer({messages, profile, updateMessages,enableUpdate}:{messages:
                         left: 0,
                         backgroundColor: 'rgba(0, 0, 0, 0.5)',
                     },
-                    height: '80vh',
+                    height: '84vh',
                     width: '68vw',
                     marginTop: 1}}>
 

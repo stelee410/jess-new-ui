@@ -32,7 +32,8 @@
       "inbox": "Inbox",
       "setting": "Setting",
       "linkyunAI": "Linkyun AI",
-      "recentlyChat": "Recently Chat"
+      "recentlyChat": "Recently Chat",
+      "onChatting": "is chatting"
     },
     "profileCard": {
       "share": "Share",
