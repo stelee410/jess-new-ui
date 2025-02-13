@@ -4,12 +4,8 @@ import CCMessageField from "./ccMessageField"
 import { Profile } from "@/types/profile";
 import Message from "@/types/message";
 
-interface messageType{
-    role:string;
-    message:string;
-}
 
-type updateMessagesType = (msg:messageType) => void;
+type updateMessagesType = (msg:Message) => void;
 
 function CCContainer({messages, profile, updateMessages,enableUpdate}:
     {messages:Message[], profile:Profile, updateMessages:updateMessagesType,enableUpdate:boolean}){
@@ -17,7 +13,7 @@ function CCContainer({messages, profile, updateMessages,enableUpdate}:
         const newMessage = {
             "role": "user",
             "message": msg
-        };
+        } as Message;
         updateMessages(newMessage);
     }
     return (

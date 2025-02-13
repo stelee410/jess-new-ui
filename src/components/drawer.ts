@@ -1,4 +1,4 @@
-import { styled } from '@mui/material/styles';
+import { styled, CSSObject } from '@mui/material/styles';
 import MuiDrawer, { DrawerProps } from '@mui/material/Drawer';
 import { drawerWidth,openedMixin,closedMixin } from './const';
 

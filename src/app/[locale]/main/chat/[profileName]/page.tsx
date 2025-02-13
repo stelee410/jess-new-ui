@@ -3,14 +3,17 @@ import ProfileListForChat from '@/components/profileListForChat';
 import ChatBot from '@/components/chatbot';
 import { Profile } from '@/types/profile';
 
+
+type tParams = Promise<{
+    profileName: string;
+    locale: string;
+}>
+
+
 export default async function Chat({
   params,
-}: {
-  params: Promise<{profileName: string}> | {profileName: string}
-}) {
-    // 等待 params 解析完成
-    const resolvedParams = await Promise.resolve(params);
-    const profileName = resolvedParams.profileName;
+}: {params:tParams}) {
+    const {profileName} = await params;
     const recent_chats = [
         {name:'jess',displayName:'Jess C', avatar:'/samples/sample.png',lastchat:'豚豚，你知道其实我想你', lastchatTimestamp:'2021-10-01T12:00:00.000Z'},
         {name:'catty',displayName:'Catty', avatar:'/samples/sample2.png',lastchat:'这里真好玩～',lastchatTimestamp:'2021-10-01T12:00:00.000Z'},

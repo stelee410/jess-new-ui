@@ -21,7 +21,7 @@ function ChatBot({profile}:{profile:Profile}){
       ]
     const [messages, setMessages] = useState<Message[]>(messages_sample as Message[]);
     const [enableUpdate, setEnableUpdate] = useState(true);
-    function updateMsg(newMessage:Message   ){
+    function updateMsg(newMessage:Message){
         setMessages((messages) => [...messages, newMessage]);
         setEnableUpdate(false);
         setTimeout(() => {
