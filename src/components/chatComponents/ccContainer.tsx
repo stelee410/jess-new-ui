@@ -14,7 +14,7 @@ function CCContainer({messages, profile, updateMessages,enableUpdate}:{messages:
         updateMessages(newMessage);
     }
     return (
-        <Box sx={{ position: 'relative', 
+        <Box sx={{ 
                     backgroundImage: `url(${profile.avatar})`,
                     backgroundSize: 'cover', // Add this line
                     backgroundRepeat: 'no-repeat', // Add this line

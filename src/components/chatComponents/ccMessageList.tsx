@@ -16,7 +16,7 @@ function CCMessageList({messages, profile}:{messages:Message[], profile:Profile}
         <List
             sx={{
                 overflowY: 'scroll',
-                height: 'calc(80vh - 50px)',
+                height: 'calc(80vh - 40px)',
                 padding: 1,
                 '&::-webkit-scrollbar': {
                     width: '0.4em',
