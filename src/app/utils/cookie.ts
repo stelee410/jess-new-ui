@@ -9,10 +9,10 @@ export function clearAllCookies() {
     });
 }
 
-export function getCookie(name: string) {
-    return Cookies.get(name);
+export function getCookie<T>(key: string): T | null {
+    return Cookies.get(key) as T | null;
 }
-
+//eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function setCookie(name: string, value: string, options: any) {
     Cookies.set(name, value, options);
 }

@@ -7,9 +7,14 @@ import '../../../styles/login.css';
 import apiClient from '@/services';
 import { setCookie, clearAllCookies } from "@/app/utils/cookie";
 
+type FormData = {
+  username: string;
+  password: string;
+};
+
 export default function Login() {
   const t = useTranslations('login');
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     username: '',
     password: ''
   });
@@ -36,6 +41,7 @@ export default function Login() {
         } else {
           setError(t('loginError'));
         }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (err: any) {
         setError(err.response?.data?.message || t('loginError'));
     }

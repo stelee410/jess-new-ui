@@ -5,7 +5,7 @@ import Message from "@/types/message";
 import { Profile } from "@/types/profile";
 
 function CCMessageList({messages, profile}:{messages:Message[], profile:Profile}){
-    let myAvatar = 'https://avatars.githubusercontent.com/u/25126281?v=4';
+    const myAvatar = 'https://avatars.githubusercontent.com/u/25126281?v=4';
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })

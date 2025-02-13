@@ -62,9 +62,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     ];
     
     useEffect(()=>{
-      apiClient.get('/ping').then(message=>{
+      apiClient.get('/ping').then(()=>{
         setConnected(true);
-      }).catch(error=>{
+      }).catch(()=>{
         setConnected(false);
       });
     },[]);
@@ -114,7 +114,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </DrawerHeader>
           <Divider />
           <List>
-            {menuItems.map((item, index) => (
+            {menuItems.map((item) => (
               <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>
                 <ListItemButton
                   sx={{

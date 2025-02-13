@@ -1,7 +1,7 @@
-interface Profile {
+type Profile = {
     name: string;
     avatar: string;
-    displayName:String;
-    description:String;
+    displayName:string;
+    description:string;
 }
 export type {Profile}

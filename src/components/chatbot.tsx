@@ -1,13 +1,12 @@
 "use client"
 import {Box} from '@mui/material';
-import CCBar from './chatComponents/ccBar';
 import CCContainer from './chatComponents/ccContainer';
 import { useState } from 'react';
 import { Profile } from '@/types/profile';
 import Message from '@/types/message';
 
 function ChatBot({profile}:{profile:Profile}){
-    let messages_sample = [
+    const messages_sample = [
         { "role": "assistant", "message": "你好，今天感觉怎么样？" },
         { "role": "user", "message": "我今天有点不太开心。" },
         { "role": "assistant", "message": "听起来你遇到了一些困难，想谈谈是什么事吗？" },
@@ -26,7 +25,7 @@ function ChatBot({profile}:{profile:Profile}){
         setMessages((messages) => [...messages, newMessage]);
         setEnableUpdate(false);
         setTimeout(() => {
-            let serverMessage={ "role": "assistant", "message": "系统正在测试，稍后恢复功能" }
+            const serverMessage={ "role": "assistant", "message": "系统正在测试，稍后恢复功能" }
             setMessages((messages) => [...messages, serverMessage as Message]);
             setEnableUpdate(true);
         }, 2000);

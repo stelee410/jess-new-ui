@@ -38,6 +38,7 @@ const mockAdapter: AxiosAdapter = (config: InternalAxiosRequestConfig) => {
                         response.request = JSON.parse(config.data);
                     }
                 } catch (error) {
+                    console.error(error);
                     reject(new Error(`Invalid JSON: ${config.data}`));
                 }
                 response = handler(response);                

@@ -4,8 +4,15 @@ import CCMessageField from "./ccMessageField"
 import { Profile } from "@/types/profile";
 import Message from "@/types/message";
 
+interface messageType{
+    role:string;
+    message:string;
+}
 
-function CCContainer({messages, profile, updateMessages,enableUpdate}:{messages:Message[], profile:Profile, updateMessages:Function,enableUpdate:boolean}){
+type updateMessagesType = (msg:messageType) => void;
+
+function CCContainer({messages, profile, updateMessages,enableUpdate}:
+    {messages:Message[], profile:Profile, updateMessages:updateMessagesType,enableUpdate:boolean}){
     function updateMsg(msg:string){
         const newMessage = {
             "role": "user",
@@ -21,7 +28,6 @@ function CCContainer({messages, profile, updateMessages,enableUpdate}:{messages:
                     backgroundPosition: 'bottom', // Add this line
                     '::before': {
                         content: '""',
-                        position: 'absolute',
                         top: 0,
                         right: 0,
                         bottom: 0,
