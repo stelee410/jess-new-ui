@@ -22,6 +22,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import LanguageIcon from '@mui/icons-material/Language';
 import { ThemeProvider } from '@mui/material/styles';
 import { darkTheme } from '@/styles/theme';
+import { API_PING } from '@/services/const';
 
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -62,7 +63,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     ];
     
     useEffect(()=>{
-      apiClient.get('/ping').then(()=>{
+      apiClient.get(API_PING).then(()=>{
         setConnected(true);
       }).catch(()=>{
         setConnected(false);

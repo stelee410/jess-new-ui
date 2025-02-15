@@ -9,6 +9,7 @@ import { setCookie, clearAllCookies } from "@/app/utils/cookie";
 import { ThemeProvider } from '@mui/material/styles';
 import { darkTheme } from '@/styles/theme';
 import LanguageSelector from '@/components/LanguageSelector';
+import { API_LOGIN_URL } from '@/services/const';
 
 type FormData = {
   username: string;
@@ -34,12 +35,17 @@ export default function Login() {
     setError('');
     try {
         clearAllCookies();
-        const response = await apiClient.post('/login', formData);
+        const response = await apiClient.post(API_LOGIN_URL, formData);
         if (response.status === 200) {
-          setCookie('token', response.data.token, { path: '/' });
-          setCookie('name', response.data.user.name, { path: '/' });
-          setCookie('email', response.data.user.email, { path: '/' });
-          setCookie('id', response.data.user.id, { path: '/' });
+          if(response.data.success === true){
+            let user = response.data.user;
+            setCookie('token', user.id, { path: '/' });
+            setCookie('name', user.name, { path: '/' });
+            setCookie('email', user.email, { path: '/' });
+            setCookie('id', user.id, { path: '/' });
+          }else{
+            setError(t('loginError'));
+          }
           router.replace('/');
         } else {
           setError(t('loginError'));
