@@ -55,11 +55,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     };
 
     const menuItems = [
-        { text: t('discover'), icon: <PersonSearchIcon /> },
-        { text: t('chat'), icon: <ChatIcon /> },
-        { text: t('create'), icon: <AddIcon /> },
-        { text: t('inbox'), icon: <InboxIcon /> },
-        { text: t('setting'), icon: <SettingsIcon /> },
+        { text: t('discover'), icon: <PersonSearchIcon />, path: '/main' },
+        { text: t('chat'), icon: <ChatIcon /> ,path: '/chat'},
+        { text: t('create'), icon: <AddIcon /> ,path: '/create'},
+        { text: t('inbox'), icon: <InboxIcon /> ,path: '/inbox'},
+        { text: t('setting'), icon: <SettingsIcon /> ,path: '/setting'},
     ];
     
     useEffect(()=>{
@@ -118,6 +118,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             {menuItems.map((item) => (
               <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>
                 <ListItemButton
+                  onClick={() => router.push(item.path)}
                   sx={{
                     minHeight: 48,
                     justifyContent: open ? 'initial' : 'center',
