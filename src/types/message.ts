@@ -1,6 +1,6 @@
 interface Message {
     role: 'user' | 'assistant';
-    message: string;
+    content: string;
 }
 
 export default Message;

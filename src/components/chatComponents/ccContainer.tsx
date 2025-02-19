@@ -12,7 +12,7 @@ function CCContainer({messages, profile, updateMessages,enableUpdate}:
     function updateMsg(msg:string){
         const newMessage = {
             "role": "user",
-            "message": msg
+            "content": msg
         } as Message;
         updateMessages(newMessage);
     }

@@ -54,7 +54,7 @@ function CCMessageList({messages, profile}:{messages:Message[], profile:Profile}
                                 marginRight: message.role === 'user' ? 0 : 1,
                             }}
                         >
-                            {message.message}
+                            {message.content}
                         </Box>
                     </ListItem>
             ))}
