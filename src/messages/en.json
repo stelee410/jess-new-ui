@@ -38,5 +38,12 @@
     "profileCard": {
       "share": "Share",
       "chat": "Chat"
+    },
+    "chat":{
+      "check_profile": "Check Profile",
+      "new_chat": "New Chat",
+      "reset_memory": "Reset Memory",
+      "set_as_my_digital_agent": "Set as My Digital Agent",
+      "share_with_creator": "Share with Creator"
     }
 }

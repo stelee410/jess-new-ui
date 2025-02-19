@@ -41,7 +41,7 @@ export default function Home() {
           }}>
             <CircularProgress />
           </div>
-        )}
+          )}
         <Typography variant="body1" sx={{ mb: 1 }}>
           {t('recentlyChat')}
         </Typography>
