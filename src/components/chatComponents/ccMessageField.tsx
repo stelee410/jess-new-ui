@@ -1,22 +1,55 @@
 import { Box, Button, TextField, IconButton, Menu, MenuItem } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { useState, useTransition } from 'react';
+import { useEffect, useState } from 'react';
 import SendIcon from '@mui/icons-material/Send';
+import CircularProgress from '@mui/material/CircularProgress';
+
 import '@/styles/chat.css';
 import { useTranslations } from 'next-intl';
+import { API_MENUS_AVAILABLE } from '@/services/const';
+import { Profile } from '@/types/profile';
+import apiClient from '@/services';
 
-function CCMessageField({onUpdate, enableUpdate}: {onUpdate: (message: string) => void, enableUpdate: boolean}) {
+function CCMessageField({onUpdate, enableUpdate, profile}: {onUpdate: (message: string) => void, enableUpdate: boolean, profile: Profile}) {
     const t = useTranslations("chat")
     const [message, setMessage] = useState('');
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
+    const [menusAvailable, setMenusAvailable] = useState<string[]>([]);
+    useEffect(() => {
+        async function fetchMenusAvailable(){
+            try {
+                if (!profile.name){
+                    return;
+                }
+                const response = await apiClient.get(`${API_MENUS_AVAILABLE}/${profile.name}`);
+                setMenusAvailable(response.data);
+            } catch (error) {
+                console.error('Error fetching menus available:', error);
+            }
+        }
+        fetchMenusAvailable();
+    }, [profile]);
     
     const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
     
-    const handleMenuClose = () => {
+    const handleMenuClose = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(null);
+        //instruction will be moved to consts.ts
+        const action = event.currentTarget.getAttribute('value');
+        if (action === 'new_chat'){
+            onUpdate('~newchat');
+        } else if (action === 'check_profile'){
+            onUpdate('~checkprofile');
+        } else if (action === 'reset_memory'){
+            onUpdate('~resetmemory');
+        } else if (action === 'set_as_my_digital_agent'){
+            onUpdate('~samda');
+        } else if (action === 'share_with_creator'){
+            onUpdate('~swc');
+        }
     };
     const handleSendMessage = () => {
         if (enableUpdate === false){
@@ -71,7 +104,7 @@ function CCMessageField({onUpdate, enableUpdate}: {onUpdate: (message: string) =
                 }}
                 onClick={handleSendMessage}
             >
-                <SendIcon />
+                <SendIcon/>
             </Button>
             <IconButton
                     onClick={handleMenuClick}
@@ -93,11 +126,11 @@ function CCMessageField({onUpdate, enableUpdate}: {onUpdate: (message: string) =
                     open={open}
                     onClose={handleMenuClose}
                 >
-                    <MenuItem onClick={handleMenuClose}>{t("check_profile")}</MenuItem>
-                    <MenuItem onClick={handleMenuClose}>{t("new_chat")}</MenuItem>
-                    <MenuItem onClick={handleMenuClose}>{t("reset_memory")}</MenuItem>
-                    <MenuItem onClick={handleMenuClose}>{t("set_as_my_digital_agent")}</MenuItem>
-                    <MenuItem onClick={handleMenuClose}>{t("share_with_creator")}</MenuItem>
+                    {(menusAvailable.indexOf('check_profile') !== -1)&&(<MenuItem onClick={handleMenuClose} value="check_profile">{t("check_profile")}</MenuItem>)}
+                    <MenuItem onClick={handleMenuClose} value="new_chat">{t("new_chat")}</MenuItem>
+                    {menusAvailable.indexOf('reset_memory') !== -1&&(<MenuItem onClick={handleMenuClose} value="reset_memory">{t("reset_memory")}</MenuItem>)}
+                    <MenuItem onClick={handleMenuClose} value="set_as_my_digital_agent">{t("set_as_my_digital_agent")}</MenuItem>
+                    {menusAvailable.indexOf('share_with_creator') !== -1&&(<MenuItem onClick={handleMenuClose} value="share_with_creator">{t("share_with_creator")}</MenuItem>)}
             </Menu>
         </Box>
     )

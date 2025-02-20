@@ -42,8 +42,9 @@
     "chat":{
       "check_profile": "查看设定",
       "new_chat": "新建聊天",
-      "reset_memory": "重置以及",
+      "reset_memory": "重置记忆",
       "set_as_my_digital_agent": "设为我的数字代理",
-      "share_with_creator": "与创建者共享聊天"
+      "share_with_creator": "与创建者共享聊天",
+      "new_chat_success": "[系统] 新建聊天成功"
     }
   }

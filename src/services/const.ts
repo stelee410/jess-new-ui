@@ -8,5 +8,9 @@ const API_RECOMMEND_CHAT = '/recommend-chat';
 const API_PING = '/ping';
 const API_CHAT_HISTORY = '/chat-history';
 const API_CHAT = '/chat';
-
-export { API_URL, API_LOGIN_URL, API_RECENT_CHAT, API_PING,API_RECOMMEND_CHAT, API_CHAT_HISTORY, API_CHAT };
+const API_MENUS_AVAILABLE = '/available-menus';
+const API_NEW_CHAT = '/new-chat';
+export { API_URL, API_LOGIN_URL, API_RECENT_CHAT, 
+  API_PING,API_RECOMMEND_CHAT,
+  API_CHAT_HISTORY, API_CHAT, 
+  API_MENUS_AVAILABLE, API_NEW_CHAT};

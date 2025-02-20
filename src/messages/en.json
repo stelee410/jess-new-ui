@@ -44,6 +44,7 @@
       "new_chat": "New Chat",
       "reset_memory": "Reset Memory",
       "set_as_my_digital_agent": "Set as My Digital Agent",
-      "share_with_creator": "Share with Creator"
+      "share_with_creator": "Share with Creator",
+      "new_chat_success": "[system] New chat success"
     }
 }

@@ -18,7 +18,7 @@ function CCContainer({messages, profile, updateMessages,enableUpdate}:
     }
     return (
         <Box sx={{ 
-                    backgroundImage: `url(${profile.avatar})`,
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${profile.avatar})`,
                     backgroundSize: 'cover', // Add this line
                     backgroundRepeat: 'no-repeat', // Add this line
                     backgroundPosition: 'bottom', // Add this line
@@ -36,7 +36,7 @@ function CCContainer({messages, profile, updateMessages,enableUpdate}:
 
             <CCMessageList messages={messages} profile={profile} />
             
-            <CCMessageField onUpdate={updateMsg} enableUpdate = {enableUpdate}/>
+            <CCMessageField onUpdate={updateMsg} enableUpdate = {enableUpdate} profile={profile}/>
             
 
 
