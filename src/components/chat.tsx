@@ -2,7 +2,7 @@
 'use client';
 import { useState, useEffect } from "react";
 import apiClient from "@/services";
-import { API_RECENT_CHAT } from "@/services/const";
+import { API_RECENT_CHAT, API_PROFILE } from "@/services/const";
 import type { Profile } from '@/types/profile';
 import { Grid, Paper } from '@mui/material';
 import ProfileListForChat from "./profileListForChat";
@@ -23,14 +23,8 @@ export default function Chat({ profileName }: { profileName: string }) {
                 const res = await apiClient.get(API_RECENT_CHAT);
                 const rc = res.data
                 setRecentChats(rc);
-                const cc = rc.find((chat: {name: string}) => chat.name === profileName);
-                const currentProfile = {
-                    name: cc?.name,
-                    displayName: cc?.displayName,
-                    avatar: cc?.avatar,
-                    description: ""
-                } as Profile;
-                setCurrentProfile(currentProfile);
+                const profileRes = await apiClient.get(`${API_PROFILE}/${profileName}`);
+                setCurrentProfile(profileRes.data);
             } catch (error) {
                 console.error('Error fetching chats:', error);
             }
@@ -42,7 +36,7 @@ export default function Chat({ profileName }: { profileName: string }) {
     return (
         <Grid container component="main" sx={{ height: '86vh' }}>
             <Grid item xs={false} sm={2} md={3} >
-                <ProfileListForChat chats={recentChats} currentProfile={profileName}/>
+                <ProfileListForChat chats={recentChats} currentProfile={currentProfile}/>
             </Grid>
             <Grid item xs={12} sm={10} md={9} component={Paper} elevation={6}>
                 <ChatBot profile={currentProfile}/>

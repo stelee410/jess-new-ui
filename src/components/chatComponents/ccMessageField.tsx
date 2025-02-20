@@ -2,8 +2,7 @@ import { Box, Button, TextField, IconButton, Menu, MenuItem } from '@mui/materia
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useEffect, useState } from 'react';
 import SendIcon from '@mui/icons-material/Send';
-import CircularProgress from '@mui/material/CircularProgress';
-
+import { CHAT_INSTRUCTION } from '@/services/const';
 import '@/styles/chat.css';
 import { useTranslations } from 'next-intl';
 import { API_MENUS_AVAILABLE } from '@/services/const';
@@ -39,16 +38,12 @@ function CCMessageField({onUpdate, enableUpdate, profile}: {onUpdate: (message: 
         setAnchorEl(null);
         //instruction will be moved to consts.ts
         const action = event.currentTarget.getAttribute('value');
-        if (action === 'new_chat'){
-            onUpdate('~newchat');
-        } else if (action === 'check_profile'){
-            onUpdate('~checkprofile');
-        } else if (action === 'reset_memory'){
-            onUpdate('~resetmemory');
-        } else if (action === 'set_as_my_digital_agent'){
-            onUpdate('~samda');
-        } else if (action === 'share_with_creator'){
-            onUpdate('~swc');
+        if (action){
+            try{
+                onUpdate(`~${CHAT_INSTRUCTION[action as keyof typeof CHAT_INSTRUCTION]}`);
+            }catch(error){
+                onUpdate(`~${CHAT_INSTRUCTION['unsupported_instruction']}`);
+            }
         }
     };
     const handleSendMessage = () => {

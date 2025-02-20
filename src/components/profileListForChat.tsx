@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import Chat from "@/types/chat";
 import { Link } from "@mui/material";
 import { useTranslations } from "next-intl";
+import { Profile } from "@/types/profile";
 
 function formatTimestamp(timestamp?: string): string {
     const ts = timestamp ? new Date(timestamp) : new Date();
@@ -19,7 +20,7 @@ function formatTimestamp(timestamp?: string): string {
 
 interface ProfileListForChatProps {
     chats: Chat[];
-    currentProfile?: string;
+    currentProfile: Profile;
 }
 
 function ProfileListForChat({ chats, currentProfile }: ProfileListForChatProps) {
@@ -27,15 +28,10 @@ function ProfileListForChat({ chats, currentProfile }: ProfileListForChatProps) 
     if (!chats) {
         return null;
     }
-    if (!currentProfile) {
-        currentProfile = chats[0].name;
-    }
-    const thisChat = chats.find(chat => chat.name === currentProfile);
-    const otherChats = chats.filter(chat => chat.name !== currentProfile);
 
-    if (!thisChat) {
-        return null;
-    }
+    const thisChat =currentProfile;
+    const otherChats = chats.filter(chat => chat.name !== currentProfile.name);
+
 
     return (
     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>

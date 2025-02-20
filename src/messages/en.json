@@ -33,7 +33,8 @@
       "setting": "Setting",
       "linkyunAI": "Linkyun AI",
       "recentlyChat": "Recently Chat",
-      "onChatting": "is chatting"
+      "onChatting": "is chatting",
+      "privateChat": "Private Chat"
     },
     "profileCard": {
       "share": "Share",

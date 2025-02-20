@@ -7,8 +7,11 @@ import { Profile } from '@/types/profile';
 import Message from '@/types/message';
 import { API_CHAT_HISTORY, API_CHAT, API_NEW_CHAT } from '@/services/const';
 import apiClient from '@/services';
+import { CHAT_INSTRUCTION } from '@/services/const';
+import { useRouter } from 'next/navigation';
 
 function ChatBot({profile}:{profile:Profile}){
+    const router = useRouter(); 
     const [messages, setMessages] = useState<Message[]>([] as Message[]);
     const [enableUpdate, setEnableUpdate] = useState(true);
     const [loading, setLoading] = useState(false);
@@ -34,7 +37,7 @@ function ChatBot({profile}:{profile:Profile}){
         fetchMessages();
     }, [profile]);
     function handleAction(action:string){
-        if (action === 'newchat'){
+        if (action === CHAT_INSTRUCTION['new_chat']){
             setMessages([]);
             const url = `${API_NEW_CHAT}/${profile.name}`
             apiClient.get(url)
@@ -50,6 +53,8 @@ function ChatBot({profile}:{profile:Profile}){
             .catch((err) => {
                 console.error(err);
             })
+        }else if (action === CHAT_INSTRUCTION['check_profile']){
+            router.push(`/legacy/profile/${profile.name}`);  
         }
     }
     function updateMsg(newMessage:Message){

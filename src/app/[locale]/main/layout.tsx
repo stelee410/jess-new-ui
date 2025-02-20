@@ -56,7 +56,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
     const menuItems = [
         { text: t('discover'), icon: <PersonSearchIcon />, path: '/main' },
-        { text: t('create'), icon: <AddIcon /> ,path: '/create'},
+        { text: t('create'), icon: <AddIcon /> ,path: '/legacy/profile/:create'},
         { text: t('inbox'), icon: <InboxIcon /> ,path: '/legacy/messages',badge: true},
         { text: t('setting'), icon: <SettingsIcon /> ,path: '/setting'},
     ];
