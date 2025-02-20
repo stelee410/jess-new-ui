@@ -49,7 +49,22 @@ function ProfileListForChat({ chats, currentProfile }: ProfileListForChatProps) 
               fontWeight: 'bold' 
             }
           }}
-          primary={thisChat.displayName}
+          primary={
+            <React.Fragment>
+              {thisChat.displayName}
+              <Typography
+                component="span"
+                variant="caption"
+                sx={{ 
+                  ml: 1,
+                  color: 'text.secondary',
+                  fontSize: '0.75rem'
+                }}
+              >
+                {formatTimestamp()}
+              </Typography>
+            </React.Fragment>
+          }
           secondary={
             <React.Fragment>
               <Typography
@@ -58,9 +73,8 @@ function ProfileListForChat({ chats, currentProfile }: ProfileListForChatProps) 
                 variant="body2"
                 color="text.primary"
               >
-                {formatTimestamp()}
+                {t('onChatting')}...
               </Typography>
-               &nbsp; — &nbsp; {t('onChatting')}
             </React.Fragment>
           }
         />
@@ -75,18 +89,37 @@ function ProfileListForChat({ chats, currentProfile }: ProfileListForChatProps) 
                 <Avatar alt={chat.name} src={chat.avatar} />
                 </ListItemAvatar>
                 <ListItemText
-                primary={chat.displayName}
+                primary={<React.Fragment>
+                  {chat.displayName}
+                  <Typography
+                    component="span"
+                    variant="caption"
+                    sx={{ 
+                      ml: 1,
+                      color: 'text.secondary',
+                      fontSize: '0.75rem'
+                    }}
+                  >
+                    {formatTimestamp(chat.lastchatTimestamp)}
+                  </Typography>
+                </React.Fragment>}
                 secondary={
                     <React.Fragment>
                     <Typography
-                        sx={{ display: 'inline' }}
+                        sx={{ 
+                          display: 'inline-block',
+                          width: '100%',  // 固定宽度
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          whiteSpace: 'nowrap',
+                          verticalAlign: 'top'  // 确保垂直对齐
+                       }}
                         component="span"
                         variant="body2"
                         color="text.primary"
                     >
-                        {formatTimestamp(chat.lastchatTimestamp)}
+                        {chat.description}
                     </Typography>
-                    &nbsp; — &nbsp; {chat.lastchat}
                     </React.Fragment>
                 }
                 />

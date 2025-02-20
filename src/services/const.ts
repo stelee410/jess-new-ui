@@ -10,7 +10,8 @@ const API_CHAT_HISTORY = '/chat-history';
 const API_CHAT = '/chat';
 const API_MENUS_AVAILABLE = '/available-menus';
 const API_NEW_CHAT = '/new-chat';
+const API_HAS_NEW_MAIL = '/has-new-mail';
 export { API_URL, API_LOGIN_URL, API_RECENT_CHAT, 
   API_PING,API_RECOMMEND_CHAT,
   API_CHAT_HISTORY, API_CHAT, 
-  API_MENUS_AVAILABLE, API_NEW_CHAT};
+  API_MENUS_AVAILABLE, API_NEW_CHAT, API_HAS_NEW_MAIL};

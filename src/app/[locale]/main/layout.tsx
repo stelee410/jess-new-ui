@@ -22,8 +22,8 @@ import { useRouter, usePathname } from 'next/navigation';
 import LanguageIcon from '@mui/icons-material/Language';
 import { ThemeProvider } from '@mui/material/styles';
 import { darkTheme } from '@/styles/theme';
-import { API_PING } from '@/services/const';
-
+import { API_PING, API_HAS_NEW_MAIL } from '@/services/const';
+import { Badge } from '@mui/material';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     const t = useTranslations('main');
@@ -56,18 +56,28 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
     const menuItems = [
         { text: t('discover'), icon: <PersonSearchIcon />, path: '/main' },
-        { text: t('chat'), icon: <ChatIcon /> ,path: '/chat'},
         { text: t('create'), icon: <AddIcon /> ,path: '/create'},
-        { text: t('inbox'), icon: <InboxIcon /> ,path: '/inbox'},
+        { text: t('inbox'), icon: <InboxIcon /> ,path: '/legacy/messages',badge: true},
         { text: t('setting'), icon: <SettingsIcon /> ,path: '/setting'},
     ];
-    
+    const [hasNewMail, setHasNewMail] = useState(false);
     useEffect(()=>{
-      apiClient.get(API_PING).then(()=>{
-        setConnected(true);
-      }).catch(()=>{
-        setConnected(false);
-      });
+      const checkstatus = async () => {
+        try{
+          const newMailResponse = await apiClient.get(API_HAS_NEW_MAIL)
+          setHasNewMail(newMailResponse.data['has_unread_message']);
+          const connectedResponse = await apiClient.get(API_PING)
+          setConnected(connectedResponse.status === 200);
+        }catch(error){
+          console.error(error);
+          setHasNewMail(false);
+          setConnected(false);
+        }
+      }
+      checkstatus();
+      setInterval(async () => {
+        await checkstatus();
+      }, 60000); // 每分钟检查一次
     },[]);
     return (
       <ThemeProvider theme={darkTheme}>
@@ -132,7 +142,24 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                       justifyContent: 'center',
                     }}
                   >
-                    {item.icon}
+                    {hasNewMail && item.badge && (<Badge 
+                        color="error" 
+                        variant="dot" 
+                        invisible={false} // 根据hasNewMail状态显示或隐藏小红点
+                        sx={{
+                          '& .MuiBadge-dot': {  // 可选：自定义小红点样式
+                            width: 8,
+                            height: 8,
+                            borderRadius: '50%',
+                            right: 2,
+                            top: 2
+                          }
+                        }}
+                      >
+                        {item.icon}
+                      </Badge>
+                    )}
+                    {(!item.badge||!hasNewMail)&& item.icon}
                   </ListItemIcon>
                   <ListItemText primary={item.text} sx={{ opacity: open ? 1 : 0 }} />
                 </ListItemButton>

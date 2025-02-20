@@ -3,6 +3,7 @@ interface Chat {
     displayName: string;
     avatar: string;
     lastchat: string;
+    description: string;
     lastchatTimestamp: string;
 }
 
