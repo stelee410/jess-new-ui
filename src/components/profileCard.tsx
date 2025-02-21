@@ -23,11 +23,13 @@ function ProfileCard({profile}:{profile:Profile}){
             {profile.displayName}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-            {profile.description}
+            {profile.description}&nbsp;
             </Typography>
         </CardContent>
         <CardActions>
-            <Button size="small">{t('share')}</Button>
+            <Link href={`/legacy/friend/${profile.name}`} style={{ textDecoration: 'none' }}>
+                <Button size="small">{t('share')}</Button>
+            </Link>
             <Link href={`/main/chat/${profile.name}`} style={{ textDecoration: 'none' }}>
                 <Button size="small">{t('chat')}</Button>
             </Link>

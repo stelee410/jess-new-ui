@@ -55,7 +55,15 @@ function ChatBot({profile}:{profile:Profile}){
             })
         }else if (action === CHAT_INSTRUCTION['check_profile']){
             router.push(`/legacy/profile/${profile.name}`);  
-        }
+        }else if (action === CHAT_INSTRUCTION['reset_memory']){
+            
+        }else if (action === CHAT_INSTRUCTION['set_as_my_digital_agent']){
+            router.push(`/legacy/friend/${profile.name}`);
+        }else if (action === CHAT_INSTRUCTION['share_with_creator']){
+
+        }else{
+            
+        }   
     }
     function updateMsg(newMessage:Message){
         if (newMessage.content.startsWith('~')){
