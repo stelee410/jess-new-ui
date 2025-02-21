@@ -25,8 +25,8 @@ export default function RootLayout({
 }>) {
   const locale = useLocale();
   return (
-    <html lang={locale}>
-      <body
+    <html lang={locale} suppressHydrationWarning>
+      <body suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
