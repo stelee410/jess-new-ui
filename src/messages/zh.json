@@ -23,7 +23,8 @@
       "password": "密码",
       "login": "登录",
       "loginWithMetamask": "通过 Metamask 登录",
-      "loginError": "用户名或密码错误"
+      "loginError": "用户名或密码错误",
+      "register": "注册"
     },
     "main": {
       "discover": "发现",

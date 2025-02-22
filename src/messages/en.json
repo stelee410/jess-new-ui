@@ -23,7 +23,8 @@
       "password": "Password",
       "login": "Login",
       "loginWithMetamask": "Login with Metamask",
-      "loginError": "Invalid username or password"
+      "loginError": "Invalid username or password",
+      "register": "Register"
     },
     "main": {
       "discover": "Discover",

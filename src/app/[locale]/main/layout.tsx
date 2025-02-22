@@ -68,17 +68,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     useEffect(()=>{
       const checkstatus = async () => {
         try{
-          const newMailResponse = await apiClient.get(API_HAS_NEW_MAIL)
-          setHasNewMail(newMailResponse.data['has_unread_message']);
           const connectedResponse = await apiClient.get(API_PING)
-
+          if (connectedResponse.data.success === false){
+            router.push('/login');
+            return;
+          }
           setConnected(connectedResponse.status === 200);
           setUsername(connectedResponse.data['username']);
           const avatarUrl = `/static/${connectedResponse.data['avatar']}`
           setAvatar(avatarUrl);
           setDisplayName(connectedResponse.data['display_name']);
-          
           setAvatarUrl(avatarUrl);
+
+          const newMailResponse = await apiClient.get(API_HAS_NEW_MAIL)
+          setHasNewMail(newMailResponse.data['has_unread_message']);
         }catch(error){
           console.error(error);
           setHasNewMail(false);

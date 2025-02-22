@@ -10,6 +10,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { darkTheme } from '@/styles/theme';
 import LanguageSelector from '@/components/LanguageSelector';
 import { API_LOGIN_URL } from '@/services/const';
+import Link from 'next/link';
 
 type FormData = {
   username: string;
@@ -95,9 +96,11 @@ export default function Login() {
                 <Button variant="contained" color="primary" fullWidth type="submit">
                   {t('login')}
                 </Button>
-                <Button variant="outlined" color="secondary" fullWidth style={{ marginTop: '10px' }}>
-                  {t('loginWithMetamask')}
-                </Button>
+                <Link href="/legacy/register" passHref>
+                  <Button variant="outlined" color="secondary" fullWidth style={{ marginTop: '10px' }}>
+                    {t('register')}
+                  </Button>
+                </Link>
             </form>
           </div>
         </div>

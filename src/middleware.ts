@@ -2,6 +2,8 @@ import createMiddleware from 'next-intl/middleware';
 import {routing} from './i18n/routing';
 import { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
+import apiClient from '@/services';
+import { API_PING } from '@/services/const';
 
 
 
@@ -9,7 +11,17 @@ const intlMiddleware = createMiddleware(routing);
 
 export default async function middleware(request: NextRequest) {
   // 获取 token
-  const sessionValue = request.cookies.get('session')?.value;
+  //const sessionValue = request.cookies.get('session')?.value;
+  let isLogin = false;
+  try{
+    const response = await apiClient.get(API_PING);
+    if (response.data.success){ 
+      isLogin = true;
+    }
+  }catch(error){
+    console.log('error', error);
+  }
+  
   
   // 获取当前路径
   const { pathname } = request.nextUrl;
@@ -24,7 +36,7 @@ export default async function middleware(request: NextRequest) {
   );
 
   // 如果没有 sessionValue 且不是公开路径，重定向到登录页面
-  if (!sessionValue && !isPublicPath) {
+  if (!isLogin && !isPublicPath) {
     const locale = pathname.startsWith('/zh') ? 'zh' : 'en';
     const url = new URL(`/${locale}/login`, request.url);
     url.searchParams.set('from', pathname);
