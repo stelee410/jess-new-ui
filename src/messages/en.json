@@ -47,6 +47,9 @@
       "reset_memory": "Reset Memory",
       "set_as_my_digital_agent": "Set as My Digital Agent",
       "share_with_creator": "Share with Creator",
-      "new_chat_success": "[system] New chat success"
+      "new_chat_success": "[system] New chat success",
+      "you_have_reset_my_memory": "[system] You have reset my memory",
+      "you_have_shared_your_chat_history_with": "[system] I have forwarded your chat history to my creator:",
+      "creator_not_exist": "[system] Creator not exist"
     }
 }

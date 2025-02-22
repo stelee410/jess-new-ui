@@ -37,9 +37,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 
 #TODO LIST
-- [ ] 重置记忆
-- [ ] 共享聊天
-- [ ] 设为我的数字代理
-- [ ] 与创建者共享聊天
-- [ ] 余额显示
-- [ ] 设置
+- [* ] 重置记忆
+- [* ] 共享聊天
+- [* ] 设为我的数字代理
+- [* ] 与创建者共享聊天
+- [* ] 余额显示
+- [* ] 设置

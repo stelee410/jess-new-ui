@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { Profile } from '@/types/profile';
 import Message from '@/types/message';
-import { API_CHAT_HISTORY, API_CHAT, API_NEW_CHAT } from '@/services/const';
+import { API_CHAT_HISTORY, API_CHAT, API_NEW_CHAT, API_RESET_MEMORY, API_SHARE_CHAT_HISTORY } from '@/services/const';
 import apiClient from '@/services';
 import { CHAT_INSTRUCTION } from '@/services/const';
 import { useRouter } from 'next/navigation';
@@ -56,11 +56,43 @@ function ChatBot({profile}:{profile:Profile}){
         }else if (action === CHAT_INSTRUCTION['check_profile']){
             router.push(`/legacy/profile/${profile.name}`);  
         }else if (action === CHAT_INSTRUCTION['reset_memory']){
-            
+            const url = `${API_RESET_MEMORY}/${profile.name}`
+            apiClient.get(url)
+            .then((response) => {
+                const newMessage = {
+                    "role": "assistant",
+                    "content": `${t("you_have_reset_my_memory")}`
+                } as Message;
+                setMessages([...messages, newMessage]);
+            })
+            .catch((err) => {
+                console.error(err);
+            })
         }else if (action === CHAT_INSTRUCTION['set_as_my_digital_agent']){
             router.push(`/legacy/friend/${profile.name}`);
         }else if (action === CHAT_INSTRUCTION['share_with_creator']){
-
+            const url = `${API_SHARE_CHAT_HISTORY}/${profile.name}`
+            apiClient.get(url)
+            .then((response) => {
+                const sharedStatus = response.data.success
+                let newMessage:Message;
+                if (sharedStatus){
+                    const to_user = response.data.to_user
+                    newMessage = {
+                        "role": "assistant",
+                        "content": `${t("you_have_shared_your_chat_history_with")} ${to_user}`
+                    } as Message;
+                }else{
+                    newMessage = {
+                        "role": "assistant",
+                        "content": `${t("creator_not_exist")}`
+                    } as Message;
+                }
+                setMessages([...messages, newMessage]);
+            })
+            .catch((err) => {
+                console.error(err);
+            })
         }else{
             
         }   
