@@ -2,8 +2,6 @@ import createMiddleware from 'next-intl/middleware';
 import {routing} from './i18n/routing';
 import { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
-import apiClient from '@/services';
-import { API_PING } from '@/services/const';
 
 
 
