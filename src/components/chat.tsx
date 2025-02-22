@@ -31,7 +31,7 @@ export default function Chat({ profileName }: { profileName: string }) {
         };
         
         fetchChats();
-    }, []);
+    }, [profileName]);
 
     return (
         <Grid container component="main" sx={{ height: '86vh' }}>

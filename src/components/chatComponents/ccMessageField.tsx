@@ -42,6 +42,7 @@ function CCMessageField({onUpdate, enableUpdate, profile}: {onUpdate: (message: 
             try{
                 onUpdate(`~${CHAT_INSTRUCTION[action as keyof typeof CHAT_INSTRUCTION]}`);
             }catch(error){
+                console.error('Error updating message:', error);
                 onUpdate(`~${CHAT_INSTRUCTION['unsupported_instruction']}`);
             }
         }

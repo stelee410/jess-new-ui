@@ -8,7 +8,6 @@ import apiClient from '@/services';
 import WifiTetheringIcon from '@mui/icons-material/WifiTethering';
 import WifiOffIcon from '@mui/icons-material/WifiOff';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
-import ChatIcon from '@mui/icons-material/Chat';
 import AddIcon from '@mui/icons-material/Add';
 import InboxIcon from '@mui/icons-material/Inbox';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -24,7 +23,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { darkTheme } from '@/styles/theme';
 import { API_PING, API_HAS_NEW_MAIL } from '@/services/const';
 import { Badge } from '@mui/material';
-import { avatarUrl, setAvatarUrl } from '@/app/utils/sharedData';
+import { setAvatarUrl } from '@/app/utils/sharedData';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     const t = useTranslations('main');
@@ -32,7 +31,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     const [open, setOpen] = React.useState(false);
     const [connected, setConnected] = React.useState(false);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    const [username, setUsername] = useState<string>('');
     const [avatar, setAvatar] = useState<string>('');
     const [displayName, setDisplayName] = useState<string>('');
     const router = useRouter();
@@ -74,7 +72,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             return;
           }
           setConnected(connectedResponse.status === 200);
-          setUsername(connectedResponse.data['username']);
           const avatarUrl = `/static/${connectedResponse.data['avatar']}`
           setAvatar(avatarUrl);
           setDisplayName(connectedResponse.data['display_name']);
@@ -92,7 +89,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       setInterval(async () => {
         await checkstatus();
       }, 60000); // 每分钟检查一次
-    },[]);
+    },[router]);
     return (
       <ThemeProvider theme={darkTheme}>
         <Box sx={{ display: 'flex' }}>

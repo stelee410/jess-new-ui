@@ -41,8 +41,7 @@ function ChatBot({profile}:{profile:Profile}){
             setMessages([]);
             const url = `${API_NEW_CHAT}/${profile.name}`
             apiClient.get(url)
-            
-            .then((response) => {
+            .then(() => {
                 const newMessage = {
                     "role": "user",
                     "content": `${t("new_chat_success")}`
@@ -58,7 +57,7 @@ function ChatBot({profile}:{profile:Profile}){
         }else if (action === CHAT_INSTRUCTION['reset_memory']){
             const url = `${API_RESET_MEMORY}/${profile.name}`
             apiClient.get(url)
-            .then((response) => {
+            .then(() => {
                 const newMessage = {
                     "role": "assistant",
                     "content": `${t("you_have_reset_my_memory")}`

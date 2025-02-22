@@ -5,7 +5,7 @@ import { TextField, Button, Container, Typography } from '@mui/material';
 import { useTranslations } from 'next-intl';
 import '../../../styles/login.css';
 import apiClient from '@/services';
-import { setCookie, clearAllCookies } from "@/app/utils/cookie";
+import { clearAllCookies } from "@/app/utils/cookie";
 import { ThemeProvider } from '@mui/material/styles';
 import { darkTheme } from '@/styles/theme';
 import LanguageSelector from '@/components/LanguageSelector';
@@ -39,15 +39,11 @@ export default function Login() {
         const response = await apiClient.post(API_LOGIN_URL, formData);
         if (response.status === 200) {
           if(response.data.success === true){
-            let user = response.data.user;
-            setCookie('token', user.id, { path: '/' });
-            setCookie('name', user.name, { path: '/' });
-            setCookie('email', user.email, { path: '/' });
-            setCookie('id', user.id, { path: '/' });
+            router.replace('/');
           }else{
             setError(t('loginError'));
           }
-          router.replace('/');
+          
         } else {
           setError(t('loginError'));
         }
