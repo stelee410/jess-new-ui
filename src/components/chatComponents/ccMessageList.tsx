@@ -3,9 +3,10 @@ import { Avatar, Box, List, ListItem } from "@mui/material";
 import { useRef, useEffect } from "react";
 import Message from "@/types/message";
 import { Profile } from "@/types/profile";
+import { avatarUrl } from "@/app/utils/sharedData";
 
 function CCMessageList({messages, profile}:{messages:Message[], profile:Profile}){
-    const myAvatar = 'https://avatars.githubusercontent.com/u/25126281?v=4';
+    const myAvatar = avatarUrl;
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })

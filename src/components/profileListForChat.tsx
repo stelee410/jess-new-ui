@@ -57,7 +57,7 @@ function ProfileListForChat({ chats, currentProfile }: ProfileListForChatProps) 
                   fontSize: '0.75rem'
                 }}
               >
-                {formatTimestamp()}
+                {t('now')}
               </Typography>
             </React.Fragment>
           }

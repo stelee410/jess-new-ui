@@ -9,7 +9,7 @@ const intlMiddleware = createMiddleware(routing);
 
 export default async function middleware(request: NextRequest) {
   // 获取 token
-  const token = request.cookies.get('token')?.value;
+  const sessionValue = request.cookies.get('session')?.value;
   
   // 获取当前路径
   const { pathname } = request.nextUrl;
@@ -23,8 +23,8 @@ export default async function middleware(request: NextRequest) {
     pathname.endsWith(path)
   );
 
-  // 如果没有 token 且不是公开路径，重定向到登录页面
-  if (!token && !isPublicPath) {
+  // 如果没有 sessionValue 且不是公开路径，重定向到登录页面
+  if (!sessionValue && !isPublicPath) {
     const locale = pathname.startsWith('/zh') ? 'zh' : 'en';
     const url = new URL(`/${locale}/login`, request.url);
     url.searchParams.set('from', pathname);
