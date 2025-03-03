@@ -34,8 +34,19 @@ function ProfileListForChat({ chats, currentProfile }: ProfileListForChatProps) 
 
 
     return (
-    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
-      <ListItem alignItems="flex-start">
+    <List sx={{ 
+      width: '100%', 
+      maxWidth: 360, 
+      bgcolor: 'background.paper',
+      display: { xs: 'flex', sm: 'block' },
+      flexDirection: { xs: 'row', sm: 'column' },
+      flexWrap: { xs: 'wrap', sm: 'nowrap' },
+      justifyContent: { xs: 'flex-start', sm: 'flex-start' }
+    }}>
+      <ListItem sx={{ 
+        width: { xs: 'auto', sm: '100%' },
+        padding: { xs: 1, sm: 2 }
+      }}>
         <ListItemAvatar>
           <Avatar alt={thisChat.name} src={thisChat.avatar} />
         </ListItemAvatar>
@@ -43,7 +54,8 @@ function ProfileListForChat({ chats, currentProfile }: ProfileListForChatProps) 
           sx={{ 
             '& .MuiListItemText-primary': { 
               fontWeight: 'bold' 
-            }
+            },
+            display: { xs: 'none', sm: 'block' }
           }}
           primary={
             <React.Fragment>
@@ -75,56 +87,54 @@ function ProfileListForChat({ chats, currentProfile }: ProfileListForChatProps) 
           }
         />
       </ListItem>
-      {
-        otherChats.map((chat, index) => (
-            <div key={index}>
-            <Divider variant="inset" component="li" />
-            <Link href={`/main/chat/${chat.name}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-            <ListItem alignItems="flex-start">
-                <ListItemAvatar>
-                <Avatar alt={chat.name} src={chat.avatar} />
-                </ListItemAvatar>
-                <ListItemText
-                primary={<React.Fragment>
-                  {chat.displayName}
+      
+      {otherChats.map((chat, index) => (
+        <Link href={`/main/chat/${chat.name}`} style={{ textDecoration: 'none', color: 'inherit' }} key={chat.name}>
+          <ListItem sx={{ 
+            width: { xs: 'auto', sm: '100%' },
+            padding: { xs: 1, sm: 2 }
+          }}>
+            <ListItemAvatar>
+              <Avatar alt={chat.name} src={chat.avatar} />
+            </ListItemAvatar>
+            <ListItemText sx={{ display: { xs: 'none', sm: 'block' } }}
+              primary={<React.Fragment>
+                {chat.displayName}
+                <Typography
+                  component="span"
+                  variant="caption"
+                  sx={{ 
+                    ml: 1,
+                    color: 'text.secondary',
+                    fontSize: '0.75rem'
+                  }}
+                >
+                  {formatTimestamp(chat.lastchatTimestamp)}
+                </Typography>
+              </React.Fragment>}
+              secondary={
+                <React.Fragment>
                   <Typography
-                    component="span"
-                    variant="caption"
                     sx={{ 
-                      ml: 1,
-                      color: 'text.secondary',
-                      fontSize: '0.75rem'
+                      display: 'inline-block',
+                      width: '100%',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap',
+                      verticalAlign: 'top'
                     }}
+                    component="span"
+                    variant="body2"
+                    color="text.primary"
                   >
-                    {formatTimestamp(chat.lastchatTimestamp)}
+                    {chat.description}
                   </Typography>
-                </React.Fragment>}
-                secondary={
-                    <React.Fragment>
-                    <Typography
-                        sx={{ 
-                          display: 'inline-block',
-                          width: '100%',  // 固定宽度
-                          overflow: 'hidden',
-                          textOverflow: 'ellipsis',
-                          whiteSpace: 'nowrap',
-                          verticalAlign: 'top'  // 确保垂直对齐
-                       }}
-                        component="span"
-                        variant="body2"
-                        color="text.primary"
-                    >
-                        {chat.description}
-                    </Typography>
-                    </React.Fragment>
-                }
-                />
-            </ListItem>
-            </Link>
-            </div>
-        )
-        )
-      }
+                </React.Fragment>
+              }
+            />
+          </ListItem>
+        </Link>
+      ))}
     </List>
     );
 }

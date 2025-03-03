@@ -117,13 +117,14 @@ function ChatBot({profile}:{profile:Profile}){
         });
     }
     return (
-        
         <Box
             sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                }}
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                width: '100%',
+                px: { xs: 1, sm: 2, md: 3 },
+            }}
         >
             {loading && (
             <div style={{

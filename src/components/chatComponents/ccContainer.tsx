@@ -31,7 +31,7 @@ function CCContainer({messages, profile, updateMessages,enableUpdate}:
                         backgroundColor: 'rgba(0, 0, 0, 0.5)',
                     },
                     height: '84vh',
-                    width: '68vw',
+                    width: {sx:'100vw',sm:'68vw'},
                     marginTop: 1}}>
 
             <CCMessageList messages={messages} profile={profile} />
