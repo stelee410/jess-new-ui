@@ -1,4 +1,4 @@
-import { Avatar, List, ListItem, ListItemText, Divider, ListItemAvatar } from "@mui/material";
+import { Avatar, List, ListItem, ListItemText, ListItemAvatar } from "@mui/material";
 import React from "react";
 import Typography from '@mui/material/Typography';
 import Chat from "@/types/chat";
@@ -89,7 +89,7 @@ function ProfileListForChat({ chats, currentProfile }: ProfileListForChatProps) 
       </ListItem>
       
       {otherChats.map((chat, index) => (
-        <Link href={`/main/chat/${chat.name}`} style={{ textDecoration: 'none', color: 'inherit' }} key={chat.name}>
+        <Link href={`/main/chat/${chat.name}`} style={{ textDecoration: 'none', color: 'inherit' }} key={index}>
           <ListItem sx={{ 
             width: { xs: 'auto', sm: '100%' },
             padding: { xs: 1, sm: 2 }
