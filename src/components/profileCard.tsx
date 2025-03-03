@@ -5,7 +5,11 @@ import { useTranslations } from 'next-intl';
 function ProfileCard({profile}:{profile:Profile}){
     const t = useTranslations('profileCard');
     return (
-        <Card sx={{ maxWidth: 345 , width: 240, margin: 1 }}>
+        <Card sx={{ 
+            maxWidth: { xs: '100%', sm: 345 }, 
+            width: { xs: '100%', sm: 240 }, 
+            margin: 1 
+        }}>
             <Box sx={{ position: 'relative' }}>
                 <CardMedia
                     sx={{ height: 140, filter: 'blur(4px)' }}

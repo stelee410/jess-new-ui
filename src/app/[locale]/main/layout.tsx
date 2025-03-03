@@ -131,7 +131,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </Menu>
             </Toolbar>
           </AppBar>
-          <Drawer variant="permanent" open={open}>
+          <Drawer 
+            variant="permanent" 
+            open={open}
+            sx={{
+              display: { xs: open ? 'block' : 'none', sm: 'block' },
+              '& .MuiDrawer-paper': {
+                width: open ? 240 : 73, // 保持原有宽度逻辑
+                transition: theme.transitions.create('width', {
+                  easing: theme.transitions.easing.sharp,
+                  duration: theme.transitions.duration.enteringScreen,
+                }),
+              },
+            }}
+          >
           <DrawerHeader>
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
