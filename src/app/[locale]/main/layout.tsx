@@ -23,7 +23,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { darkTheme } from '@/styles/theme';
 import { API_PING, API_HAS_NEW_MAIL } from '@/services/const';
 import { Badge } from '@mui/material';
-import { setAvatarUrl } from '@/app/utils/sharedData';
+import { setAvatarUrl } from '@/utils/sharedData';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     const t = useTranslations('main');
@@ -195,7 +195,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </List>
           <Divider />
         </Drawer>
-          <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          <Box component="main" sx={{ flexGrow: 1, p: 3 , padding:{xs: 0, sm: 3}}}>
           <DrawerHeader />
           {children}
           </Box>

@@ -21,8 +21,8 @@ export default function Chat({ profileName }: { profileName: string }) {
         const fetchChats = async () => {
             try {
                 const res = await apiClient.get(API_RECENT_CHAT);
-                const rc = res.data
-                setRecentChats(rc);
+                const rc = res.data;
+                setRecentChats(rc.slice(0, 5));
                 const profileRes = await apiClient.get(`${API_PROFILE}/${profileName}`);
                 setCurrentProfile(profileRes.data);
             } catch (error) {

@@ -3,7 +3,7 @@ import { Avatar, Box, List, ListItem } from "@mui/material";
 import { useRef, useEffect } from "react";
 import Message from "@/types/message";
 import { Profile } from "@/types/profile";
-import { avatarUrl } from "@/app/utils/sharedData";
+import { avatarUrl } from "@/utils/sharedData";
 
 function CCMessageList({messages, profile}:{messages:Message[], profile:Profile}){
     const myAvatar = avatarUrl;

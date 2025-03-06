@@ -123,7 +123,8 @@ function ChatBot({profile}:{profile:Profile}){
                 flexDirection: 'column',
                 alignItems: 'center',
                 width: '100%',
-                px: { xs: 1, sm: 2, md: 3 },
+                padding: {xs: 0, sm: 2},
+                px: { xs: 0, sm: 2, md: 3 },
             }}
         >
             {loading && (

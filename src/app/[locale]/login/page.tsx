@@ -5,7 +5,7 @@ import { TextField, Button, Container, Typography } from '@mui/material';
 import { useTranslations } from 'next-intl';
 import '../../../styles/login.css';
 import apiClient from '@/services';
-import { clearAllCookies } from "@/app/utils/cookie";
+import { clearAllCookies } from "@/utils/cookie";
 import { ThemeProvider } from '@mui/material/styles';
 import { darkTheme } from '@/styles/theme';
 import LanguageSelector from '@/components/LanguageSelector';
