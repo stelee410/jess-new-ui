@@ -108,8 +108,7 @@ function ChatBot({profile}:{profile:Profile}){
         apiClient.post(`${API_CHAT}/${profile.name}`, {"content": newMessage.content})
         .then((response) => {
             const serverMessage=response.data as Message
-            messages.pop();
-            setMessages((messages) => [...messages, serverMessage]);
+            setMessages((messages) => [...messages.slice(0, -1), serverMessage]);
         })
         .catch((err) => {
             console.error(err);
