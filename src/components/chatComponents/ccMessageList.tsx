@@ -13,6 +13,14 @@ function CCMessageList({messages, profile}:{messages:Message[], profile:Profile}
     }
     
     useEffect(scrollToBottom, [messages]);
+    function wrapContent(message:Message){
+        if (message.content == '~...'){
+            return ( <Box sx={{display: 'flex', alignItems: 'center' }}>
+                <img src="/chat_progress.gif" alt="Loading..." style={{ height: '20px', marginRight: '8px',marginLeft: '8px' }} />
+                </Box>)
+        }
+        return message.content;
+    }
     return (
         <List
             sx={{
@@ -55,7 +63,7 @@ function CCMessageList({messages, profile}:{messages:Message[], profile:Profile}
                                 marginRight: message.role === 'user' ? 0 : 1,
                             }}
                         >
-                            {message.content}
+                            {wrapContent(message)}
                         </Box>
                     </ListItem>
             ))}

@@ -102,11 +102,13 @@ function ChatBot({profile}:{profile:Profile}){
             handleAction(action);
             return;
         }
-        setMessages((messages) => [...messages, newMessage]);
+
+        setMessages((messages) => [...messages, newMessage,{"role":"assistant","content":"~..."}]);
         setEnableUpdate(false);
         apiClient.post(`${API_CHAT}/${profile.name}`, {"content": newMessage.content})
         .then((response) => {
             const serverMessage=response.data as Message
+            messages.pop();
             setMessages((messages) => [...messages, serverMessage]);
         })
         .catch((err) => {
